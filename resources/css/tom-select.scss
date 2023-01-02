@@ -1,0 +1,62 @@
+$select-font-family: var(--ts-select-font-family, inherit);
+$select-font-smoothing: var(--ts-select-font-smoothing, inherit);
+$select-font-size: var(--ts-select-font-size, 13px);
+$select-line-height: var(--ts-select-line-height, 18px);
+
+$select-color-text: #303030;
+$select-color-border: #d0d0d0;
+$select-color-highlight: var(--ts-select-color-highlight, rgba(125, 168, 208, 0.2));
+$select-color-input: var(--ts-select-color-input, #fff);
+$select-color-input-full: var(--ts-select-color-input-full, $select-color-input);
+$select-color-disabled: var(--ts-select-color-disabled, #fafafa);
+$select-color-item: #f2f2f2;
+$select-color-item-text: $select-color-text;
+$select-color-item-border: #d0d0d0;
+$select-color-item-active: var(--ts-select-color-item-active, #e8e8e8);
+$select-color-item-active-text: var(--ts-select-color-item-active-text, $select-color-text);
+$select-color-item-active-border: var(--ts-select-color-item-active-border, #cacaca);
+$select-color-dropdown: #fff;
+$select-color-dropdown-border: $select-color-border;
+$select-color-dropdown-border-top: var(--ts-select-color-dropdown-border-top, #f0f0f0);
+$select-color-dropdown-item-active: var(--ts-select-color-dropdown-item-active, #f5fafd);
+$select-color-dropdown-item-active-text: var(--ts-select-color-dropdown-item-active-text, #495c68);
+$select-color-dropdown-item-create-text: var(--ts-select-color-dropdown-item-create-text, rgba(red(#303030), green(#303030), blue(#303030), 0.5));
+$select-color-dropdown-item-create-active-text: var(--ts-select-color-dropdown-item-create-active-text, $select-color-dropdown-item-active-text);
+$select-color-optgroup: $select-color-dropdown;
+$select-color-optgroup-text: var(--ts-select-color-optgroup-text, $select-color-text);
+$select-lighten-disabled-item: 30%;
+$select-lighten-disabled-item-text: 30%;
+$select-lighten-disabled-item-border: 30%;
+$select-opacity-disabled: var(--ts-select-opacity-disabled, 0.5);
+
+$select-shadow-input: var(--ts-select-shadow-input, none);
+$select-shadow-input-focus: var(--ts-select-shadow-input-focus, none);
+$select-border-width: var(--ts-select-border-width, 1px);
+$select-border: var(--ts-select-border, $select-border-width solid $select-color-border);
+$select-dropdown-border: 1px solid $select-color-dropdown-border;
+$select-border-radius: var(--ts-select-border-radius, 3px);
+
+$select-width-item-border: var(--ts-select-width-item-border, 0px);
+$select-max-height-dropdown: var(--ts-select-max-height-dropdown, 200px);
+
+$select-padding-x: var(--ts-select-padding-x, 8px);
+$select-padding-y: var(--ts-select-padding-y, 8px);
+$select-padding-item-x: var(--ts-select-padding-item-x, 6px);
+$select-padding-item-y: var(--ts-select-padding-item-y, 2px);
+$select-padding-dropdown-item-x: 8px;
+$select-padding-dropdown-item-y: 5px;
+$select-margin-item-x: var(--ts-select-margin-item-x, 3px);
+$select-margin-item-y: var(--ts-select-margin-item-y, 3px);
+
+$select-arrow-size: var(--ts-select-arrow-size, 5px);
+$select-arrow-color: var(--ts-select-arrow-color, #808080);
+$select-arrow-offset: var(--ts-select-arrow-offset, 15px);
+
+$select-caret-margin: var(--ts-select-caret-margin, 0px 4px);
+$select-caret-margin-rtl: var(--ts-select-caret-margin-rtl, 0px 4px 0px -2px);
+
+$select-spinner-size: 30px;
+$select-spinner-border-size: var(--ts-select-spinner-border-size, 5px);
+$select-spinner-border-color: var(--ts-select-spinner-border-color, $select-color-border);
+
+@import "tom-select/dist/scss/tom-select";

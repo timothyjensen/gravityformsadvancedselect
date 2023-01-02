@@ -1,0 +1,14 @@
+{
+    "name": "timothyjensen/gravityformsadvancedselect",
+    "description": "Advanced multi-select field for Gravity Forms. Supports dynamic options for terms and posts.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Tim Jensen",
+            "email": "tim@timjensen.us"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
