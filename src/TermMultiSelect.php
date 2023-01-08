@@ -51,8 +51,9 @@ class TermMultiSelect extends MultiSelect {
                 jQuery('#include_taxonomies_setting').val(typeof field.selectedTaxonomies == 'undefined' ? '' : field.selectedTaxonomies)
                 
                 try {
-                   new TomSelect('#include_taxonomies_setting', { plugins: [ 'remove_button' ] } );
+			        new TomSelect('#include_taxonomies_setting', { plugins: [ 'remove_button' ] } );
                 } catch (e) {
+					document.getElementById('include_taxonomies_setting').tomselect.sync();
                 }
 			});
 JS;
