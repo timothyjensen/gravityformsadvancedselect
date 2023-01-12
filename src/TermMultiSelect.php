@@ -93,6 +93,37 @@ JS;
 	}
 
 	/**
+	 * Format term IDs as term slugs for better readability.
+	 *
+	 * @param $value
+	 * @param $currency
+	 * @param $use_text
+	 * @param $format
+	 * @param $media
+	 *
+	 * @return array|string
+	 */
+	public function get_value_entry_detail( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
+		if ( empty( $value ) || ( $format == 'text' && $this->storageType !== 'json' ) ) {
+			return $value;
+		}
+
+		$items = $this->to_array( $value );
+
+		foreach ( $items as &$item ) {
+			$term = get_term( (int) $item );
+
+			if ( ! is_a( $term, \WP_Term::class ) ) {
+				continue;
+			}
+
+			$item = $term->slug;
+		}
+
+		return parent::get_value_entry_detail( $items, $currency, $use_text, $format, $media );
+	}
+
+	/**
 	 * Returns the merged Tom Select settings for this field type.
 	 *
 	 * @param mixed $value
