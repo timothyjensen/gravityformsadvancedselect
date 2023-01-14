@@ -198,6 +198,7 @@ class AddOn extends GFAddOn {
 				'change_listener'      => 'Change Listener',
 				'checkbox_options'     => 'Checkbox Options',
 				'clear_button'         => 'Clear Button',
+				// 'drag_drop'            => 'Drag \'n Drop', // Excluded due to jQuery dependency.
 				'dropdown_header'      => 'Dropdown Header',
 				'dropdown_input'       => 'Dropdown Input',
 				'input_autogrow'       => 'Input Autogrow',
