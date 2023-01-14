@@ -84,7 +84,7 @@ JS;
 
 		$terms = get_terms( [
 			'taxonomy'   => $this->selectedTaxonomies,
-			'number'     => (int) $this->maxOptions ?? 0,
+			'number'     => $this->get_pagination_per_page( 0 ),
 			'hide_empty' => false,
 		] );
 
@@ -131,12 +131,11 @@ JS;
 	 * @return array
 	 */
 	public function get_tomselect_settings( $value = '' ) {
-		return array_merge(
-			parent::get_tomselect_settings( $value ),
-			[
-				'searchType'    => 'term',
-				'searchSubtype' => $this->selectedTaxonomies,
-			]
-		);
+		$settings = parent::get_tomselect_settings( $value );
+
+		$settings['searchType']    = 'term';
+		$settings['searchSubtype'] = $this->selectedTaxonomies;
+
+		return $settings;
 	}
 }

@@ -121,12 +121,50 @@ JS;
 	 * @return array
 	 */
 	protected function get_tomselect_settings( $value = '' ) {
-		return [
+		$settings = [
 			'maxItems'    => ! empty( $this->maxItems ) ? (int) $this->maxItems : null,
 			'maxOptions'  => ! empty( $this->maxOptions ) ? (int) $this->maxOptions : null,
 			'items'       => $value,
 			'placeholder' => $this->placeholder ?? '',
 			'plugins'     => $this->plugins ?? [],
 		];
+
+		// Show the selected number of options on load, but allow loading more via the API.
+		if ( $this->is_virtual_scroll_enabled() ) {
+			$settings['paginationPerPage'] = $this->get_pagination_per_page( 20 );
+			$settings['maxOptions']        = null;
+		}
+
+		return $settings;
+	}
+
+	/**
+	 * Whether the virtual scroll option is enabled.
+	 *
+	 * @return bool
+	 */
+	protected function is_virtual_scroll_enabled() {
+		return in_array( 'virtual_scroll', $this->plugins ?? [], true );
+	}
+
+	/**
+	 * Pagination per page.
+	 *
+	 * @return int
+	 */
+	protected function get_pagination_per_page( $default = null ) {
+		$max_options = (int) ( $this->maxOptions ?? null );
+
+		if ( $this->is_virtual_scroll_enabled() ) {
+			$default = max( $default, 20 );
+
+			return min($max_options ?: $default, 100 );
+		}
+
+		if ( empty( $max_options ) ) {
+			return $default;
+		}
+
+		return $max_options;
 	}
 }

@@ -6,6 +6,20 @@
 			return;
 		}
 
+		const apiUrl = ( query, settings ) => {
+			const { restUrl } = window.tom_select_init_frontend_strings;
+
+			const url = new URL( `${ restUrl }wp/v2/search` );
+
+			url.searchParams.append( 'search', query );
+			url.searchParams.append( 'type', settings.searchType );
+			url.searchParams.append( 'subtype', settings.searchSubtype );
+			url.searchParams.append( 'per_page', settings.paginationPerPage );
+			url.searchParams.append( 'page', settings.paginationPage );
+
+			return url;
+		}
+
 		const defaultSettings = {
 			plugins: [],
 			valueField: 'id',
@@ -15,8 +29,9 @@
 			maxOptions: null,
 			paginationPage: 1,
 			paginationPerPage: 20,
+			paginationTotalPages: 1,
 			render: {
-				option: function( data, escape ) {
+				option: ( data, escape ) => {
 					let classes = data.$option?.classList.toString() || '';
 
 					return (
@@ -24,42 +39,42 @@
 					);
 				}
 			},
-			firstUrl: function( query ) {
-				const url = new URL( `${ restUrl }wp/v2/search` );
 
-				url.searchParams.append( 'search', encodeURIComponent( query ) );
+			firstUrl: query => apiUrl( query, this.settings ),
 
-				return url.toString();
-			},
 			load: function( query, callback ) {
-				const { restUrl } = window.tom_select_init_frontend_strings;
+				if ( !this.settings.plugins.includes( 'virtual_scroll' ) ) {
+					callback();
 
-				const url = new URL( `${ restUrl }wp/v2/search` );
+					return;
+				}
 
-				url.searchParams.append( 'search', encodeURIComponent( query ) );
-				url.searchParams.append( 'type', this.settings.searchType );
-				url.searchParams.append( 'subtype', this.settings.searchSubtype );
-				url.searchParams.append( 'page', this.settings.paginationPage );
-				url.searchParams.append( 'per_page', this.settings.paginationPerPage );
-
-				fetch( url )
+				fetch( apiUrl( query, this.settings ) )
 					.then( response => {
-						const totalPages = response.headers.get('x-wp-totalpages');
+						this.settings.paginationTotalPages = Number( response.headers.get( 'x-wp-totalpages' ) ) || 1;
+						this.settings.maxOptions = Number( response.headers.get( 'x-wp-total' ) ) || null;
 
-						if (totalPages > this.settings.paginationPage ) {
-							this.settings.paginationPage = this.settings.paginationPage + 1;
-
-							this.setNextUrl(query, url);
+						if ( ! response.ok ) {
+							throw response.status;
 						}
 
 						return response.json();
 					} )
 					.then( json => {
-						console.log({json});
+						if ( this.settings.paginationTotalPages > this.settings.paginationPage ) {
+							this.settings.paginationPage = this.settings.paginationPage + 1;
+
+							this.setNextUrl( query, apiUrl( query, this.settings ) );
+						} else {
+							this.setNextUrl( query, null );
+						}
+
 						callback( json );
 					} )
-					.catch( () => {
-						callback();
+					.catch( (e) => {
+						console.log(e);
+
+						callback()
 					} );
 			}
 		};
@@ -68,14 +83,28 @@
 
 		const settings = Object.assign( defaultSettings, fieldSettings );
 
-		console.log( { settings } );
-
-		if ( Array.isArray( element.dataset.selectedItems ) &&
-		     element.dataset.selectedItems.length ) {
+		if (
+			Array.isArray( element.dataset.selectedItems )
+			&& element.dataset.selectedItems.length
+		) {
 			settings.items = element.dataset.selectedItems;
 		}
 
-		new TomSelect( element, settings );
+		const ts = new TomSelect( element, settings );
+
+		if ( settings.plugins.includes( 'virtual_scroll' ) ) {
+			ts.on( 'focus', function() {
+				ts.settings.paginationPage = ts.settings.paginationPage + 1;
+
+				ts.setNextUrl( '', apiUrl( '', ts.settings ) );
+			} );
+
+			ts.on( 'type', function() {
+				ts.settings.paginationPage = 1;
+
+				ts.setNextUrl( '', apiUrl( '', ts.settings ) );
+			} );
+		}
 	}
 
 	function initializeFeaturedItemSelect() {
@@ -85,8 +114,7 @@
 			return;
 		}
 
-		document.querySelectorAll( '.gfield_select_tomselect' ).
-		         forEach( initializeTomSelect );
+		document.querySelectorAll( '.gfield_select_tomselect' ).forEach( initializeTomSelect );
 	}
 
 	document.addEventListener( 'DOMContentLoaded', initializeFeaturedItemSelect );

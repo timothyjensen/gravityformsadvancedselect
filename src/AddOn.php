@@ -212,8 +212,7 @@ class AddOn extends GFAddOn {
 			?>
 			<li class="placeholder field_setting">
 				<label for="placeholder_setting">
-					<?php
-					esc_html_e( 'Placeholder', 'gravityformsadvancedselect' ); ?>
+					<?php esc_html_e( 'Placeholder', 'gravityformsadvancedselect' ); ?>
 				</label>
 				<input id="placeholder_setting" type="text" class="fieldwidth-1"
 				       onchange="setAdvancedMultiSelectSetting('placeholder', jQuery(this).val());"
@@ -221,10 +220,8 @@ class AddOn extends GFAddOn {
 			</li>
 			<li class="include_taxonomies_setting field_setting">
 				<label for="include_taxonomies_setting">
-					<?php
-					esc_html_e( 'Taxonomies', 'gravityformsadvancedselect' ); ?>
-					<?php
-					gform_tooltip( 'include_taxonomies_setting' ) ?>
+					<?php esc_html_e( 'Taxonomies', 'gravityformsadvancedselect' ); ?>
+					<?php gform_tooltip( 'include_taxonomies_setting' ) ?>
 				</label>
 				<select id="include_taxonomies_setting" type="text"
 				        class="fieldwidth-1"
@@ -260,6 +257,7 @@ class AddOn extends GFAddOn {
 				</label>
 				<input id="max_options_setting" type="number"
 				       class="fieldwidth-1"
+				       max="100"
 				       onchange="setAdvancedMultiSelectSetting('maxOptions', jQuery(this).val());"
 				       value=""/>
 			</li>

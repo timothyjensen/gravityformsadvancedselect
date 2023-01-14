@@ -79,9 +79,9 @@ JS;
 
 		$selected_posts = array_map( 'get_post', array_filter( (array) $value ) );
 
-		$posts = get_posts( [
+		$posts               = get_posts( [
 			'post_type'      => $this->selectedPostTypes,
-			'posts_per_page' => $this->maxOptions,
+			'posts_per_page' => $this->get_pagination_per_page( -1 ),
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 		] );
@@ -98,12 +98,11 @@ JS;
 	 * @return array
 	 */
 	public function get_tomselect_settings( $value = '' ) {
-		return array_merge(
-			parent::get_tomselect_settings( $value ),
-			[
-				'searchType'    => 'post',
-				'searchSubtype' => $this->selectedPostTypes,
-			]
-		);
+		$settings = parent::get_tomselect_settings( $value );
+
+		$settings['searchType']    = 'post';
+		$settings['searchSubtype'] = $this->selectedPostTypes;
+
+		return $settings;
 	}
 }
