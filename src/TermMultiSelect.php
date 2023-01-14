@@ -83,8 +83,9 @@ JS;
 		$selected_terms = array_map( 'get_term', array_filter( (array) $value ) );
 
 		$terms = get_terms( [
-			'taxonomy' => $this->selectedTaxonomies,
-			'number'   => (int) $this->maxOptions ?? 0,
+			'taxonomy'   => $this->selectedTaxonomies,
+			'number'     => (int) $this->maxOptions ?? 0,
+			'hide_empty' => false,
 		] );
 
 		$terms = array_merge( $selected_terms, $terms );
