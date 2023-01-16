@@ -18,7 +18,7 @@ class TermMultiSelect extends MultiSelect {
 	 * @return string
 	 */
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Term Multi-select', 'gravityformsadvancedselect' );
+		return esc_attr__( 'Term Multi Select', 'gravityformsadvancedselect' );
 	}
 
 	/**
@@ -43,7 +43,7 @@ class TermMultiSelect extends MultiSelect {
 		return <<<JS
             $parent_script
             
-			jQuery(document).bind('gform_load_field_settings', function (event, field, form) {
+			jQuery(document).on('gform_load_field_settings', function (event, field, form) {
                 if ( '$multiselect_field_type' !== field.type ) {
                     return;
                 }
@@ -53,7 +53,7 @@ class TermMultiSelect extends MultiSelect {
                 try {
 			        new TomSelect('#include_taxonomies_setting', { plugins: [ 'remove_button' ] } );
                 } catch (e) {
-					document.getElementById('include_taxonomies_setting').tomselect.sync();
+					document.getElementById('include_taxonomies_setting').tomselect?.sync();
                 }
 			});
 JS;

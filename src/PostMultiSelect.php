@@ -18,7 +18,7 @@ class PostMultiSelect extends MultiSelect {
 	 * @return string
 	 */
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Post Multi-select', 'gravityformsadvancedselect' );
+		return esc_attr__( 'Post Multi Select', 'gravityformsadvancedselect' );
 	}
 
 	/**
@@ -43,7 +43,7 @@ class PostMultiSelect extends MultiSelect {
 		return <<<JS
             $parent_script
             
-			jQuery(document).bind('gform_load_field_settings', function (event, field, form) {
+			jQuery(document).on('gform_load_field_settings', function (event, field, form) {
                 if ( '$multiselect_field_type' !== field.type ) {
                     return;
                 }         

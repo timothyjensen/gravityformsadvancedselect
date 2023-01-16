@@ -58,7 +58,7 @@ abstract class MultiSelect extends GF_Field_MultiSelect {
 		$multiselect_field_type = $this->type;
 
 		return <<<JS
-			jQuery(document).bind('gform_load_field_settings', function (event, field, form) {
+			jQuery(document).on('gform_load_field_settings', function (event, field, form) {
                 if ( '$multiselect_field_type' !== field.type ) {
                     return;
                 }
@@ -71,7 +71,7 @@ abstract class MultiSelect extends GF_Field_MultiSelect {
                 try {
 					new TomSelect('#include_plugins_setting', { plugins: [ 'remove_button' ] } );
                 } catch (e) {
-                    document.getElementById('include_plugins_setting').tomselect.sync();
+                    document.getElementById('include_plugins_setting').tomselect?.sync();
                 }
 			});
 
@@ -93,6 +93,10 @@ JS;
 	 */
 	public function get_field_input( $form, $value = '', $entry = null ) {
 		$field_html = parent::get_field_input( $form, $value, $entry );
+
+		if ( is_admin() ) {
+			return $field_html;
+		}
 
 		$document = new \DOMDocument();
 		$decoded  = mb_convert_encoding( $field_html, 'HTML-ENTITIES', 'UTF-8' );
