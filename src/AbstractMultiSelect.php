@@ -7,7 +7,7 @@ use GF_Field_MultiSelect;
 /**
  * MultiSelect class.
  */
-abstract class MultiSelect extends GF_Field_MultiSelect {
+abstract class AbstractMultiSelect extends GF_Field_MultiSelect {
 
 	/**
 	 * @var string The field type.

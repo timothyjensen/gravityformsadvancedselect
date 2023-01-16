@@ -11,8 +11,8 @@
  *
  * Plugin Name: Gravity Forms Advanced Select
  * Plugin URI:  https://github.com/timothyjensen/gravityformsadvancedselect
- * Description: Advanced multi-select field for Gravity Forms. Supports dynamic options for terms and posts.
- * Version:     0.1.0
+ * Description: Advanced multi-select field for Gravity Forms. Supports dynamic options for posts and terms.
+ * Version:     0.2.0
  * Author:      Tim Jensen
  * Author URI:  https://www.timjensen.us
  * Text Domain: gravityformsadvancedselect

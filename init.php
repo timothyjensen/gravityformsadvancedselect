@@ -34,6 +34,7 @@ function register_addon() {
 
 	GFForms::include_addon_framework();
 
+	AddOn::register_field( ManualMultiSelect::class );
 	AddOn::register_field( PostMultiSelect::class );
 	AddOn::register_field( TermMultiSelect::class );
 

@@ -5,7 +5,7 @@ namespace GravityFormsAdvancedSelect;
 /**
  * PostMultiSelect class.
  */
-class PostMultiSelect extends MultiSelect {
+class PostMultiSelect extends AbstractMultiSelect {
 
 	/**
 	 * @var string The field type.
