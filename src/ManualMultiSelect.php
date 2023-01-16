@@ -12,6 +12,12 @@ class ManualMultiSelect extends AbstractMultiSelect {
 	 */
 	public static $field_type = 'manual_multiselect';
 
+	public function __construct( $data = [] ) {
+		parent::__construct( $data );
+
+		$this->plugins = array_diff( (array) $this->plugins, [ 'virtual_scroll' ] );
+	}
+
 	/**
 	 * Return the field title, for use in the form editor.
 	 *
@@ -26,7 +32,7 @@ class ManualMultiSelect extends AbstractMultiSelect {
 	 *
 	 * @return array
 	 */
-	function get_form_editor_field_settings() {
+	public function get_form_editor_field_settings() {
 		return [
 			'choices_setting',
 			...array_diff( parent::get_form_editor_field_settings(), [ 'max_options_setting' ] ),

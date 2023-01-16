@@ -37,7 +37,7 @@ abstract class AbstractMultiSelect extends GF_Field_MultiSelect {
 	 *
 	 * @return array
 	 */
-	function get_form_editor_field_settings() {
+	public function get_form_editor_field_settings() {
 		$common_settings = [ 'max_items_setting', 'max_options_setting', 'placeholder', 'include_plugins_setting' ];
 
 		return [
