@@ -13,6 +13,7 @@
  * Plugin URI:  https://github.com/timothyjensen/gravityformsadvancedselect
  * Description: Advanced multi-select field for Gravity Forms. Supports dynamic options for posts and terms.
  * Version:     0.2.0
+ * Requires 	PHP: 7.4
  * Author:      Tim Jensen
  * Author URI:  https://www.timjensen.us
  * Text Domain: gravityformsadvancedselect
@@ -24,6 +25,10 @@ namespace GravityFormsAdvancedSelect;
 
 if ( ! \defined( 'ABSPATH' ) ) {
 	die;
+}
+
+if ( version_compare( PHP_VERSION, '7.4.0', '<' ) ) {
+	return;
 }
 
 \define( 'GF_ADVANCED_SELECT_FILE', __FILE__ );
