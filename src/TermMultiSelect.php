@@ -75,7 +75,7 @@ JS;
 			'hide_empty'   => false,
 			'hierarchical' => true,
 			'orderby'      => 'name',
-			'selected'     => $value,
+			'selected'     => '', // Empty due to Walker not able to handle array values. The value is set via JS.
 			'show_count'   => false,
 			'value_field'  => 'term_id',
 		];
