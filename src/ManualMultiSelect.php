@@ -38,4 +38,20 @@ class ManualMultiSelect extends AbstractMultiSelect {
 			...array_diff( parent::get_form_editor_field_settings(), [ 'max_options_setting' ] ),
 		];
 	}
+
+	/**
+	 * Returns the HTML options for the select field.
+	 *
+	 * @param mixed $value
+	 * @return string
+	 */
+	public function get_choices( $value ) {
+		if ( empty ( $this->choices ) ) {
+			$this->choices = [
+				[ 'value' => '', 'text' => '' ],
+			];
+		}
+
+		return parent::get_choices( $value );
+	}
 }
