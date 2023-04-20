@@ -191,8 +191,9 @@ class AddOn extends GFAddOn {
 	 */
 	public function field_standard_settings( $position, $form_id ) {
 		if ( 1600 === $position ) {
-			$taxonomies = get_taxonomies( [ 'public' => true, 'show_in_rest' => true ], 'objects' );
-			$post_types = get_post_types( [ 'public' => true, 'show_in_rest' => true ], 'objects' );
+			$taxonomies = apply_filters( 'gravityformsadvancedselect_taxonomies', get_taxonomies( [ 'public' => true, 'show_in_rest' => true ], 'objects' ) );
+			$post_types = apply_filters( 'gravityformsadvancedselect_post_types', get_post_types( [ 'public' => true, 'show_in_rest' => true ], 'objects' ) );
+
 			$ts_plugins = [
 				'caret_position'       => 'Caret Position',
 				'change_listener'      => 'Change Listener',
