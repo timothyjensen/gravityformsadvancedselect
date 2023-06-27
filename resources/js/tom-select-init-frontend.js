@@ -107,7 +107,7 @@
 		}
 	}
 
-	function initializeFeaturedItemSelect() {
+	function initializeGFieldTomSelect() {
 		if ( typeof TomSelect !== 'function' ) {
 			console.log( 'TomSelect not available!' );
 
@@ -117,7 +117,11 @@
 		document.querySelectorAll( '.gfield_select_tomselect' ).forEach( initializeTomSelect );
 	}
 
-	document.addEventListener( 'DOMContentLoaded', initializeFeaturedItemSelect );
+	window.gravityformsadvancedselectInitializeTomSelect = initializeGFieldTomSelect;
 
-	window.gravityformsadvancedselectInitializeTomSelect = initializeFeaturedItemSelect;
+	if (typeof jQuery !== 'undefined') {
+		jQuery(document).on('gform_post_render', gravityformsadvancedselectInitializeTomSelect);
+	} else {
+		document.addEventListener( 'DOMContentLoaded', gravityformsadvancedselectInitializeTomSelect );
+	}
 })();
