@@ -114,13 +114,13 @@
 			return;
 		}
 
-		document.querySelectorAll( '.gfield_select_tomselect' ).forEach( initializeTomSelect );
+		document.querySelectorAll( 'select.gfield_select_tomselect' ).forEach( initializeTomSelect );
 	}
 
 	window.gravityformsadvancedselectInitializeTomSelect = initializeGFieldTomSelect;
 
 	if (typeof jQuery !== 'undefined') {
-		jQuery(document).on('gform_post_render', gravityformsadvancedselectInitializeTomSelect);
+		jQuery(document).on('gform_post_render', gravityformsadvancedselectInitializeTomSelect );
 	} else {
 		document.addEventListener( 'DOMContentLoaded', gravityformsadvancedselectInitializeTomSelect );
 	}
