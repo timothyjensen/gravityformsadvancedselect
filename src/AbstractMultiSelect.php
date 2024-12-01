@@ -94,16 +94,17 @@ JS;
 	public function get_field_input( $form, $value = '', $entry = null ) {
 		$field_html = parent::get_field_input( $form, $value, $entry );
 
-		if ( is_admin() ) {
+		if ( is_admin() || empty( $field_html ) ) {
 			return $field_html;
 		}
 
 		$document = new \DOMDocument();
-		$decoded  = mb_convert_encoding( $field_html, 'HTML-ENTITIES', 'UTF-8' );
 
 		libxml_use_internal_errors( true );
 
-		$document->loadHTML( $decoded, LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED );
+		$document->loadHTML( $field_html, LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED );
+
+		libxml_clear_errors();
 
 		$select = $document->getElementsByTagName( 'select' )->item( 0 );
 
