@@ -6,6 +6,8 @@
 			return;
 		}
 
+		element.setAttribute( 'aria-hidden', 'true' );
+
 		const apiUrl = ( query, settings ) => {
 			const { restUrl } = window.tom_select_init_frontend_strings;
 
