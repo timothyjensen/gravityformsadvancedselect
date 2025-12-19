@@ -44,6 +44,11 @@
 
 			firstUrl: query => apiUrl( query, this.settings ),
 
+			onItemAdd: function() {
+				this.setTextboxValue('');
+				this.refreshOptions();
+			},
+
 			load: function( query, callback ) {
 				if ( !this.settings.plugins.includes( 'virtual_scroll' ) ) {
 					callback();
