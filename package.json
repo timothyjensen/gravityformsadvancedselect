@@ -1,12 +1,12 @@
 {
   "name": "gravityformsadvancedselect",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "Advanced multi-select field for Gravity Forms. Supports dynamic options for terms and posts.",
   "main": "index.js",
   "scripts": {
-    "build": "npx mix --production",
-    "dev": "npx mix",
-    "watch": "npx mix watch"
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "watch": "vite build --watch"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,8 @@
   },
   "homepage": "https://github.com/timothyjensen/gravityformsadvancedselect#readme",
   "devDependencies": {
-    "laravel-mix": "^6.0.49",
-    "resolve-url-loader": "^5.0.0",
-    "sass": "^1.57.1",
-    "sass-loader": "^12.6.0"
+    "vite": "^7.3.0",
+    "sass": "^1.97.1"
   },
   "dependencies": {
     "tom-select": "^2.4.3"

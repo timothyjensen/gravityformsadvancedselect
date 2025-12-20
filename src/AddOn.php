@@ -80,17 +80,11 @@ class AddOn extends GFAddOn {
 	 * @return string
 	 */
 	public function asset_url( string $asset_path ): string {
-		static $manifest = null;
+		$asset_path = ltrim( $asset_path, '/' );
 
-		$asset_path = '/assets/' . trim( $asset_path, '/' );
+		$version = filemtime( dirname( GF_ADVANCED_SELECT_FILE ) . "/assets/$asset_path" );
 
-		if ( null === $manifest ) {
-			$manifest = json_decode( (string) file_get_contents( dirname( GF_ADVANCED_SELECT_FILE ) . '/mix-manifest.json' ), true );
-		}
-
-		$versioned_filename = $manifest[ $asset_path ] ?? $asset_path;
-
-		return $this->get_base_url() . $versioned_filename;
+		return $this->get_base_url() . "/assets/$asset_path?v=$version";
 	}
 
 	/**
