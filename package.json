@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/timothyjensen/gravityformsadvancedselect#readme",
   "devDependencies": {
-    "vite": "^7.3.0",
-    "sass": "^1.97.1"
+    "sass": "^1.97.1",
+    "vite": "^7.3.0"
   },
   "dependencies": {
-    "tom-select": "^2.4.3"
+    "tom-select": "^2.4.6"
   }
 }
